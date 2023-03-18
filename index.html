@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<title>SRP</title>
+	<meta name="description" content="Basic A-Frame Scene">
+	<script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>    
+</head>
+
+<body>
+    <audio id="correctSound" src="correct.mp3"></audio>
+	<audio id="noobSound" src="noob.mp3"></audio>
+
+    
+		
+	<a-scene inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="">
+
+		<a-entity position="13.091 5.4009 -14.30609" rotation="0 55 0" movement-controls="fly: true">
+			<a-entity id="superView" camera="" look-controls="" wasd-controls="" rotation-reader="" position=""
+					rotation="4.812845479098918 -70.01544256498664 0" data-aframe-inspector-original-camera="">
+	
+				<a-entity position="0 0 -3" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+						material="color: cyan; shader: flat" cursor="fuse: true" raycaster="">
+	
+						<a-animation begin="click" easing="ease-in" attribute="scale" fill="forwards" from="0.2 0.2 0.2"
+							to="1 1 1" dur="150"></a-animation>
+	
+						<a-animation begin="fusing" easing="ease-in" attribute="scale" fill="backwards" from="1 1 1"
+							to="0.2 0.2 0.2" dur="750"></a-animation>
+	
+				</a-entity>
+			</a-entity>
+		</a-entity>
+		
+
+
+		<!-- 
+			//this  is the entry position 
+			<a-entity camera="" look-controls="" wasd-controls="acceleration: 7" position="-0.89108 1.93357 18.109" 
+				rotation="" data-aframe-inspector-original-camera=""></a-entity>
+		--> 
+
+
+        <a-entity gltf-model="models/island.glb" position="0.01471 1.55838 0.213" 
+			scale = "30 30 30" animation=""></a-entity>
+		<!--
+			//this is the tree location
+			<a-entity camera="" look-controls="" wasd-controls="acceleration: 7" position="13.091 5.4009 -14.30609" 
+			rotation="" data-aframe-inspector-original-camera=""></a-entity>
+		-->
+		
+
+
+			<a-circle class="redCircle" radius="0.05" color="red" position="11.88397 5.03033 -17.182" material="" geometry="" visible=""></a-circle>
+			<a-circle class="redCircle" radius="0.05" color="red" position="12.05517 5.79598 -17.182" material="" geometry="" visible=""></a-circle>
+			<a-circle class="redCircle" radius="0.05" color="red" position="11.4517 5.578 -17.182" material="" geometry="" visible=""></a-circle>
+			<a-circle class="redCircle" radius="0.05" color="red" position="11.80692 6.378 -17.18166" material="" geometry="" visible=""></a-circle>
+			<a-circle class="redCircle" radius="0.05" color="red" position="11.72692 5.6711 -17.18166" material="" geometry="" visible=""></a-circle>
+			<a-circle class="redCircle" radius="0.05" color="red" position="11.46652 5.978 -17.18166" material="" geometry="" visible=""></a-circle>
+			<a-circle class="greenCircle" radius="0.05" color="#2E8B57" position="12.06503 4.988 -17.18166" material="" geometry="" visible=""></a-circle>
+			<a-circle class="greenCircle" radius="0.05" color="#2E8B57" position="11.23867 5.188 -17.18166" material="" geometry="" visible=""></a-circle>
+			<a-circle class="greenCircle" radius="0.05" color="#2E8B57" position="11.59389 5.388 -17.18166" material="" geometry="" visible=""></a-circle>
+			<a-circle class="greenCircle" radius="0.05" color="#2E8B57" position="11.74666 6.11063 -17.18166" material="" geometry="" visible=""></a-circle>
+			<a-circle class="greenCircle" radius="0.05" color="#2E8B57" position="11.85188 5.3778 -17.18166" material="" geometry="" visible=""></a-circle>
+			<a-sky src = "sky.jpg"></a-sky>
+
+		<script>
+
+			let redCircles = document.querySelectorAll(".redCircle");
+			let greenCircles = document.querySelectorAll(".greenCircle");
+
+			let correctAudio = document.querySelector('#correctSound')
+			let wrongAudio = document.querySelector('#noobSound')
+
+
+			function setupListeners(circleArray, notificationSound) {
+				circleArray.forEach(circle => {
+					circle.addEventListener('click', () => {
+						circle.setAttribute('visible', false);
+						notificationSound.play();
+					});
+				})
+			}
+
+			setupListeners(redCircles, correctAudio)
+			setupListeners(greenCircles, wrongAudio)
+
+			
+		</script>
+		<div class="a-loader-title" style="display: none;">Basic A-Frame Scene</div>
+
+		
+    </a-scene>
+</body>
+</html>
+
